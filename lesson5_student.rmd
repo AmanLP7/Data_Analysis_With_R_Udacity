@@ -246,8 +246,24 @@ Notes:
 ### Histograms Revisited
 Notes:
 
-```{r Histograms Revisited}
 
+```{r}
+setwd("F:/Datasets")
+yo <- read.csv("yogurt.csv")
+str(yo)
+```
+
+```{r}
+summary(yo)
+```
+
+```{r}
+yo$id <- as.factor(yo$id)
+```
+
+```{r Histograms Revisited}
+ggplot(aes(x = price), data = yo) +
+  geom_histogram(fill = I("#F79420"), binwidth = 10)
 ```
 
 ***
@@ -256,8 +272,15 @@ Notes:
 Notes:
 
 ```{r Number of Purchases}
-
+summary(yo)
+table(yo$price)
 ```
+
+```{r}
+yo$all.purchases <- with(yo, strawberry + plain + mixed.berry + blueberry + pina.colada)
+str(yo)
+```
+
 
 ***
 
@@ -265,7 +288,9 @@ Notes:
 Notes:
 
 ```{r Prices over Time}
-
+yo %>%
+  ggplot(aes(x = all.purchases)) +
+  geom_histogram(fill = I("#fe7722"), color = "black", binwidth = 1)
 ```
 
 ***
