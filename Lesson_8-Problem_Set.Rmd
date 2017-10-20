@@ -1,0 +1,28 @@
+---
+title: "Lesson 8: Problem set"
+output: html_notebook
+---
+
+
+### Loading dataset
+
+```{r}
+str(diamonds)
+head(diamonds)
+```
+
+### Loading Required libraries
+
+```{r}
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+```
+
+* Price histogram with facet colors
+
+```{r}
+ggplot(aes(x = price), data = diamonds) + geom_histogram(aes(fill = cut),color = "black", binwidth = 200) +
+  scale_x_continuous(limits = c(250,19000), breaks = seq(300,19000,3500)) + facet_wrap(~color)
+```
+
