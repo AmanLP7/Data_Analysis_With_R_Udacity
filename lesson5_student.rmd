@@ -21,6 +21,7 @@ str(pf)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
+library(reshape2)
 ```
 
 
@@ -374,6 +375,7 @@ Notes:
 Notes:
 
 ```{r}
+setwd("F:/Datasets")
 nci <- read.table("nci.tsv")
 colnames(nci) <- c(1:64)
 ```
