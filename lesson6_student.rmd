@@ -27,8 +27,10 @@ str(diamonds)
 ```{r Scatterplot Review}
 diamonds %>%
   ggplot(aes(x = carat, y = price)) +
-  geom_point() +
-  scale_x_continuous(xlim = c(0,quantile(carat,0.99)), ylim = c(0,quantile(price,0.99)))
+  geom_point(color = "#ffff00", alpha = 1/4) +
+  geom_smooth(method = "lm") +
+  scale_x_continuous(lim  = c(0,quantile(diamonds$carat,0.99)))+
+  scale_y_continuous(lim = c(0,quantile(diamonds$price,0.99)))
 ```
 
 ***
