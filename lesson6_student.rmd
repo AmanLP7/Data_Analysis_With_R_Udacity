@@ -8,8 +8,27 @@ Notes:
 
 ### Scatterplot Review
 
-```{r Scatterplot Review}
+```{r}
+library(dplyr)
+library(tidyr)
+library(scales)
+library(ggplot2)
+```
 
+```{r}
+data("diamonds")
+```
+
+```{r}
+str(diamonds)
+```
+
+
+```{r Scatterplot Review}
+diamonds %>%
+  ggplot(aes(x = carat, y = price)) +
+  geom_point() +
+  scale_x_continuous(xlim = c(0,quantile(carat,0.99)), ylim = c(0,quantile(price,0.99)))
 ```
 
 ***
@@ -36,16 +55,6 @@ Notes:
 Notes:
 
 ```{r ggpairs Function}
-# install these if necessary
-install.packages('GGally')
-install.packages('scales')
-install.packages('memisc')
-install.packages('lattice')
-install.packages('MASS')
-install.packages('car')
-install.packages('reshape')
-install.packages('plyr')
-
 # load the ggplot graphics package and the others
 library(ggplot2)
 library(GGally)
