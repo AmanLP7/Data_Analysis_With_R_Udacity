@@ -108,7 +108,10 @@ Notes:
 ### Scatterplot Transformation
 
 ```{r Scatterplot Transformation}
-
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point() +
+  scale_y_continuous(trans = "log10") +
+  ggtitle("Price(log10) by carat")
 ```
 
 
@@ -125,7 +128,7 @@ ggplot(aes(carat, price), data = diamonds) +
   geom_point() + 
   scale_x_continuous(trans = cuberoot_trans(), limits = c(0.2, 3),
                      breaks = c(0.2, 0.5, 1, 2, 3)) + 
-  scale_y_continuous(trans = log10_trans(), limits = c(350, 15000),
+  scale_y_continuous(trans = "log10", limits = c(350, 15000),
                      breaks = c(350, 1000, 5000, 10000, 15000)) +
   ggtitle('Price (log10) by Cube-Root of Carat')
 ```
