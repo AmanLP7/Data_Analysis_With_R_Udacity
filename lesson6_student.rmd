@@ -27,7 +27,7 @@ str(diamonds)
 ```{r Scatterplot Review}
 diamonds %>%
   ggplot(aes(x = carat, y = price)) +
-  geom_point(color = "#ffff00", alpha = 1/4) +
+  geom_point(color = "#ff3300", alpha = 1/4) +
   geom_smooth(method = "lm") +
   scale_x_continuous(lim  = c(0,quantile(diamonds$carat,0.99)))+
   scale_y_continuous(lim = c(0,quantile(diamonds$price,0.99)))
@@ -68,7 +68,7 @@ set.seed(20022012)
 diamond_samp <- diamonds[sample(1:length(diamonds$price), 10000), ]
 ggpairs(diamond_samp, 
         lower = list(continuous = wrap("points", shape = I('.'))), 
-        upper = list(combo = wrap("box", outlier.shape = I('.'))))
+        upper = list(combo = wrap("box", outlier.shape = I('.'))), axisLabels = "internal")
 ```
 
 What are some things you notice in the ggpairs output?
@@ -80,8 +80,23 @@ Response:
 Notes:
 
 ```{r The Demand of Diamonds}
-
+library(gridExtra)
 ```
+```{r}
+plot1 <- ggplot(data = diamonds, aes(x = price)) +
+  geom_histogram(binwidth = 200, fill = "#00e6e6") + ggtitle("Price")
+```
+
+```{r}
+plot2 <- ggplot(data = diamonds,aes(x = price)) +
+  geom_histogram(binwidth = 0.015, fill = "#ff0000") +
+  scale_x_log10() + ggtitle("Log(Price)")
+```
+
+```{r}
+grid.arrange(plot1, plot2, ncol = 1)
+```
+
 
 ***
 
